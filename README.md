@@ -89,35 +89,7 @@ streamlit run src/app.py
 ```
 Then open your browser → upload a blurred image → get a clear version.  
 
----
 
-## 🔌 API Call Example  
-
-```python
-import requests
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-API_KEY = os.getenv("AI_API_KEY")
-API_URL = "https://api.provider.com/v1/enhance"
-
-with open("data/blur_image.jpg", "rb") as f:
-    img_data = f.read()
-
-response = requests.post(
-    API_URL,
-    headers={"Authorization": f"Bearer {API_KEY}"},
-    files={"image": img_data}
-)
-
-if response.status_code == 200:
-    with open("outputs/clear_image.jpg", "wb") as f:
-        f.write(response.content)
-    print("✅ Enhanced image saved at outputs/clear_image.jpg")
-else:
-    print("❌ Error:", response.json())
-```
 
 ---
 
