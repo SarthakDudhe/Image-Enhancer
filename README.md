@@ -1,12 +1,160 @@
-# React + Vite
+# 📸 Image Enhancer  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Image Enhancer is an AI-powered tool that takes a **blurred image as input** and returns a **clear, sharp version** using an **AI Enhancement API**.  
+Unlike traditional filters, this project leverages deep learning APIs to **restore details, reduce noise, and improve clarity**.  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features  
+- Upload any blurred image and get a sharper result  
+- Works with popular formats: `.jpg`, `.png`, `.jpeg`  
+- Fast and lightweight (AI API does the heavy work)  
+- No need to train or run large ML models locally  
+- Can be used via script or web app  
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack  
+- **Backend:** Python (Flask / FastAPI / Streamlit optional)  
+- **Image Processing:** AI API (e.g., OpenAI, Replicate, Stability AI, or custom provider)  
+- **Dependencies:** OpenCV, Requests, dotenv, etc.  
+
+---
+
+## 📂 Project Structure  
+```
+Image-Enhancer/
+│── data/                # Sample input images
+│── outputs/             # Enhanced images saved here
+│── src/
+│   ├── enhancer.py      # Core API integration logic
+│   ├── app.py           # (Optional) Web interface
+│   └── utils.py         # Helper functions
+│── requirements.txt     # Dependencies
+│── .env.example         # Environment variables template
+│── README.md            # Documentation
+```
+
+---
+
+## ⚙️ Installation & Setup  
+
+### **1. Download Project**  
+Clone or download the repository:  
+```bash
+git clone https://github.com/yourusername/image-enhancer.git
+cd image-enhancer
+```
+
+👉 Or [📥 **Download ZIP**](https://github.com/yourusername/image-enhancer/archive/refs/heads/main.zip)  
+
+---
+
+### **2. Create Environment**  
+```bash
+python -m venv venv
+source venv/bin/activate    # Mac/Linux
+venv\Scripts\activate       # Windows
+```
+
+---
+
+### **3. Install Dependencies**  
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### **4. Configure API Key**  
+Create a `.env` file in the project root:  
+```ini
+AI_API_KEY=your_api_key_here
+```
+
+Replace `your_api_key_here` with the actual key from your AI provider.  
+
+---
+
+## ▶️ Usage  
+
+### **Option 1: Enhance via Script**  
+```bash
+python src/enhancer.py --input data/blur_image.jpg --output outputs/clear_image.jpg
+```
+
+### **Option 2: Run Web App (Optional)**  
+```bash
+streamlit run src/app.py
+```
+Then open your browser → upload a blurred image → get a clear version.  
+
+---
+
+## 🔌 API Call Example  
+
+```python
+import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+API_KEY = os.getenv("AI_API_KEY")
+API_URL = "https://api.provider.com/v1/enhance"
+
+with open("data/blur_image.jpg", "rb") as f:
+    img_data = f.read()
+
+response = requests.post(
+    API_URL,
+    headers={"Authorization": f"Bearer {API_KEY}"},
+    files={"image": img_data}
+)
+
+if response.status_code == 200:
+    with open("outputs/clear_image.jpg", "wb") as f:
+        f.write(response.content)
+    print("✅ Enhanced image saved at outputs/clear_image.jpg")
+else:
+    print("❌ Error:", response.json())
+```
+
+---
+
+## 📊 Example  
+
+**Input (Blurred):**  
+![Blurred](https://via.placeholder.com/200x150?text=Blurred+Image)  
+
+**Output (Enhanced):**  
+![Enhanced](https://via.placeholder.com/200x150?text=Enhanced+Image)  
+
+---
+
+## 📈 Future Roadmap  
+- [ ] Batch image processing  
+- [ ] Video frame enhancement  
+- [ ] Multiple API provider support  
+- [ ] Cloud storage integration (S3, ImageKit, GCP)  
+
+---
+
+## 🤝 Contributing  
+Contributions are welcome!  
+1. Fork this repo  
+2. Create a feature branch (`git checkout -b feature-name`)  
+3. Commit (`git commit -m "Added feature"`)  
+4. Push (`git push origin feature-name`)  
+5. Open a Pull Request  
+
+---
+
+## 📥 Download  
+
+🔗 **Download Latest Release:** [Click Here](https://github.com/yourusername/image-enhancer/releases)  
+🔗 Or **ZIP File:** [Download](https://github.com/yourusername/image-enhancer/archive/refs/heads/main.zip)  
+
+---
+
+## 📜 License  
+Licensed under the **MIT License** – free to use, modify, and distribute.  
