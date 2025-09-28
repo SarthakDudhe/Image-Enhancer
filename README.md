@@ -15,9 +15,9 @@ Unlike traditional filters, this project leverages deep learning APIs to **resto
 ---
 
 ## 🛠️ Tech Stack  
-- **Backend:** Python (Flask / FastAPI / Streamlit optional)  
-- **Image Processing:** AI API (e.g., OpenAI, Replicate, Stability AI, or custom provider)  
-- **Dependencies:** OpenCV, Requests, dotenv, etc.  
+- **Frontend:** Python (React + Vite)  
+- **Image Processing:** AI API (e.g.,Picwish Blur API)  
+- **Dependencies:**  Requests, dotenv, etc.  
 
 ---
 
